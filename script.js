@@ -11,51 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let index = 0;
 
     const translations = {
-        // Traduções...
-        "nav-about": {
-            en: "About Me",
-            pt: "Sobre Mim"
-        },
-        "nav-projects": {
-            en: "Projects",
-            pt: "Projetos"
-        },
-        "nav-skills": {
-            en: "Skills",
-            pt: "Habilidades"
-        },
-        "nav-experience": {
-            en: "Experience",
-            pt: "Experiência Profissional"
-        },
-        "nav-certificates": {
-            en: "Certificates",
-            pt: "Certificados"
-        },
-        "nav-contact": {
-            en: "Contact",
-            pt: "Contato"
-        },
-        "about-title": {
-            en: "About Me",
-            pt: "Sobre Mim"
-        },
-        "projects-title": {
-            en: "Projects",
-            pt: "Projetos"
-        },
-        "skills-title": {
-            en: "Skills",
-            pt: "Habilidades"
-        },
-        "contact-title": {
-            en: "Contact",
-            pt: "Contato"
-        },
-        "footer": {
-            en: "© 2023 Matheus Felipe da Silva Marciano. All rights reserved.",
-            pt: "© 2023 Matheus Felipe da Silva Marciano. Todos os direitos reservados."
-        }
+        "nav-about": { en: "About Me", pt: "Sobre Mim" },
+        "nav-projects": { en: "Projects", pt: "Projetos" },
+        "nav-skills": { en: "Skills", pt: "Habilidades" },
+        "nav-experience": { en: "Experience", pt: "Experiência Profissional" },
+        "nav-certificates": { en: "Certificates", pt: "Certificados" },
+        "nav-contact": { en: "Contact", pt: "Contato" },
+        "about-title": { en: "About Me", pt: "Sobre Mim" },
+        "projects-title": { en: "Projects", pt: "Projetos" },
+        "skills-title": { en: "Skills", pt: "Habilidades" },
+        "contact-title": { en: "Contact", pt: "Contato" },
+        "footer": { en: "© 2023 Matheus Felipe da Silva Marciano. All rights reserved.", pt: "© 2023 Matheus Felipe da Silva Marciano. Todos os direitos reservados." }
     };
 
     function translatePage(language) {
@@ -68,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetTerminal() {
-        terminalOutput.textContent = '';
-        index = 0; // Reinicia o índice ao trocar o idioma
-        typeText();
+        terminalOutput.textContent = ''; // Limpa a saída do terminal
+        index = 0; // Reinicia o índice
+        typeText(); // Começa a digitar o texto do terminal novamente
     }
 
     function typeText() {
@@ -84,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     languageSwitcher.addEventListener('click', () => {
         currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
         translatePage(currentLanguage);
+        terminalText = currentLanguage === 'en' 
+            ? "Welcome to my portfolio. I am Matheus Felipe da Silva Marciano, a Cybersecurity IT Analyst with a focus on protecting and securing information systems. Explore my projects, skills, and contact information to learn more about my professional journey."
+            : "Bem-vindo ao meu portfólio. Eu sou Matheus Felipe da Silva Marciano, um Analista de TI em Cibersegurança com foco em proteger e garantir a segurança dos sistemas de informação. Explore meus projetos, habilidades e informações de contato para saber mais sobre minha jornada profissional.";
         resetTerminal(); // Reinicia o terminal após a troca de idioma
     });
 
