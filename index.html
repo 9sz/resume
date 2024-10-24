@@ -1,76 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cybersecurity Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Matheus Felipe da Silva Marciano - Portfólio</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1 data-translate="title">Cybersecurity IT Analyst</h1>
-        <nav>
-            <ul>
-                <li><a href="#about" data-translate="nav-about">About Me</a></li>
-                <li><a href="#projects" data-translate="nav-projects">Projects</a></li>
-                <li><a href="#skills" data-translate="nav-skills">Skills</a></li>
-                <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
-                <li><a href="#" id="language-switcher">Switch Language</a></li>
-            </ul>
-        </nav>
+        <h1>Matheus Felipe da Silva Marciano</h1>
+        <h2 data-translate="title">Analista de TI em Cibersegurança</h2>
+        <button id="language-switcher">Switch Language</button>
     </header>
+    <nav>
+        <ul>
+            <li><a data-translate="nav-about" href="#about">Sobre Mim</a></li>
+            <li><a data-translate="nav-projects" href="#projects">Projetos</a></li>
+            <li><a data-translate="nav-skills" href="#skills">Habilidades</a></li>
+            <li><a data-translate="nav-experience" href="#experience">Experiência Profissional</a></li>
+            <li><a data-translate="nav-certificates" href="#certificates">Certificados</a></li>
+            <li><a data-translate="nav-contact" href="#contact">Contato</a></li>
+        </ul>
+    </nav>
 
     <section id="about">
-        <h2 data-translate="about-title">About Me</h2>
+        <h3 data-translate="about-title">Sobre Mim</h3>
         <div id="terminal">
-            <div class="terminal-output"></div>
+            <div class="terminal-header">
+                <span class="terminal-button red"></span>
+                <span class="terminal-button yellow"></span>
+                <span class="terminal-button green"></span>
+            </div>
+            <div class="terminal-body">
+                <p class="terminal-output">Loading...</p>
+            </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 data-translate="projects-title">Projects</h2>
+        <h3 data-translate="projects-title">Projetos</h3>
         <div class="project">
-            <h4>Project One</h4>
-            <p style="display:none;" data-translate="project-one-desc">Detailed description of Project One with more technical insights.</p>
+            <h4 data-translate="project-one" data-text="Projeto Um" class="glitch">Projeto Um</h4>
+            <p data-translate="project-one-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="project-btn" data-title="Projeto Um" data-desc="Descrição detalhada do Projeto Um.">Detalhes</button>
         </div>
         <div class="project">
-            <h4>Project Two</h4>
-            <p style="display:none;" data-translate="project-two-desc">Detailed description of Project Two with more technical insights.</p>
+            <h4 data-translate="project-two" data-text="Projeto Dois" class="glitch">Projeto Dois</h4>
+            <p data-translate="project-two-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button class="project-btn" data-title="Projeto Dois" data-desc="Descrição detalhada do Projeto Dois.">Detalhes</button>
         </div>
     </section>
 
     <section id="skills">
-        <h2 data-translate="skills-title">Skills</h2>
+        <h3 data-translate="skills-title">Habilidades</h3>
         <div class="skill-bar">
-            <div class="skill" data-skill="90">Python</div>
+            <div data-translate="skill-network-security" data-skill="Network Security" class="skill"></div>
         </div>
         <div class="skill-bar">
-            <div class="skill" data-skill="85">Network Security</div>
+            <div data-translate="skill-penetration-testing" data-skill="Penetration Testing" class="skill"></div>
         </div>
         <div class="skill-bar">
-            <div class="skill" data-skill="80">Penetration Testing</div>
+            <div data-translate="skill-incident-response" data-skill="Incident Response" class="skill"></div>
         </div>
+        <div class="skill-bar">
+            <div data-translate="skill-encryption-techniques" data-skill="Encryption Techniques" class="skill"></div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experiência Profissional</h2>
+        <div class="job">
+            <h4>Analista de Segurança da Informação</h4>
+            <p>Empresa XYZ | 2022 - Presente</p>
+            <button class="project-btn" data-title="Analista de Segurança da Informação" data-desc="Responsável por monitorar e proteger os sistemas da empresa. Implementação de políticas de segurança.">Detalhes</button>
+        </div>
+        <div class="job">
+            <h4>Técnico de Suporte em TI</h4>
+            <p>Empresa ABC | 2020 - 2022</p>
+            <button class="project-btn" data-title="Técnico de Suporte em TI" data-desc="Atuação no suporte técnico e resolução de problemas relacionados a redes e sistemas.">Detalhes</button>
+        </div>
+    </section>
+
+    <section id="certificates">
+        <h2>Certificados</h2>
+        <ul>
+            <li>Certificado de Segurança em Redes</li>
+            <li>Certificado em PenTest</li>
+            <li>Certificado em Resposta a Incidentes</li>
+        </ul>
     </section>
 
     <section id="contact">
-        <h2 data-translate="contact-title">Contact</h2>
-        <p data-translate="contact-email"></p>
-        <p data-translate="contact-linkedin"></p>
+        <h3 data-translate="contact-title">Contato</h3>
+        <p data-translate="contact-email">Email: <a href="mailto:email@example.com">email@example.com</a></p>
+        <p data-translate="contact-linkedin">LinkedIn: <a href="https://www.linkedin.com/in/yourprofile">Seu LinkedIn</a></p>
     </section>
 
     <footer>
-        <p data-translate="footer"></p>
+        <p data-translate="footer">© 2023 Matheus Felipe da Silva Marciano. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Modal for Projects -->
-    <div id="project-modal">
+    <!-- Modal -->
+    <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
+            <span class="close">&times;</span>
             <h2 id="modal-title"></h2>
             <p id="modal-description"></p>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
