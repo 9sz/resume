@@ -2,55 +2,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('nav ul li a');
     const languageSwitcher = document.getElementById('language-switcher');
     const terminalOutput = document.querySelector('.terminal-output');
-    const modal = document.getElementById('project-modal');
-    const closeButton = document.querySelector('.close-button');
+    const modal = document.getElementById('myModal');
+    const closeModal = document.querySelector('.close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
     let currentLanguage = 'en';
 
     const translations = {
-        "en": {
-            "title": "Cybersecurity IT Analyst",
-            "nav-about": "About Me",
-            "nav-projects": "Projects",
-            "nav-skills": "Skills",
-            "nav-contact": "Contact",
-            "about-title": "About Me",
-            "projects-title": "Projects",
-            "project-one": "Project One",
-            "project-one-desc": "Detailed description of Project One with more technical insights.",
-            "project-two": "Project Two",
-            "project-two-desc": "Detailed description of Project Two with more technical insights.",
-            "skills-title": "Skills",
-            "contact-title": "Contact",
-            "contact-email": "Email: <a href='mailto:email@example.com'>email@example.com</a>",
-            "contact-linkedin": "LinkedIn: <a href='https://www.linkedin.com/in/yourprofile'>Your LinkedIn</a>",
-            "footer": "© 2023 Matheus Felipe da Silva Marciano. All rights reserved."
+        // Traduções...
+        "nav-about": {
+            en: "About Me",
+            pt: "Sobre Mim"
         },
-        "pt": {
-            "title": "Analista de TI em Cibersegurança",
-            "nav-about": "Sobre Mim",
-            "nav-projects": "Projetos",
-            "nav-skills": "Habilidades",
-            "nav-contact": "Contato",
-            "about-title": "Sobre Mim",
-            "projects-title": "Projetos",
-            "project-one": "Projeto Um",
-            "project-one-desc": "Descrição detalhada do Projeto Um com mais informações técnicas.",
-            "project-two": "Projeto Dois",
-            "project-two-desc": "Descrição detalhada do Projeto Dois com mais informações técnicas.",
-            "skills-title": "Habilidades",
-            "contact-title": "Contato",
-            "contact-email": "Email: <a href='mailto:email@example.com'>email@example.com</a>",
-            "contact-linkedin": "LinkedIn: <a href='https://www.linkedin.com/in/yourprofile'>Seu LinkedIn</a>",
-            "footer": "© 2023 Matheus Felipe da Silva Marciano. Todos os direitos reservados."
+        "nav-projects": {
+            en: "Projects",
+            pt: "Projetos"
+        },
+        "nav-skills": {
+            en: "Skills",
+            pt: "Habilidades"
+        },
+        "nav-experience": {
+            en: "Experience",
+            pt: "Experiência Profissional"
+        },
+        "nav-certificates": {
+            en: "Certificates",
+            pt: "Certificados"
+        },
+        "nav-contact": {
+            en: "Contact",
+            pt: "Contato"
+        },
+        "about-title": {
+            en: "About Me",
+            pt: "Sobre Mim"
+        },
+        "projects-title": {
+            en: "Projects",
+            pt: "Projetos"
+        },
+        "skills-title": {
+            en: "Skills",
+            pt: "Habilidades"
+        },
+        "contact-title": {
+            en: "Contact",
+            pt: "Contato"
+        },
+        "footer": {
+            en: "© 2023 Matheus Felipe da Silva Marciano. All rights reserved.",
+            pt: "© 2023 Matheus Felipe da Silva Marciano. Todos os direitos reservados."
         }
     };
 
     function translatePage(language) {
-        document.querySelectorAll('[data-translate]').forEach(element => {
-            const key = element.getAttribute('data-translate');
-            element.innerHTML = translations[language][key];
+        Object.keys(translations).forEach(key => {
+            const elements = document.querySelectorAll(`[data-translate="${key}"]`);
+            elements.forEach(el => {
+                el.textContent = translations[key][language];
+            });
         });
-        terminalOutput.textContent = translations[language]['terminalText'];
+
+        // Reinicia o terminal
+        terminalOutput.textContent = '';
+        typeText();
     }
 
     languageSwitcher.addEventListener('click', () => {
@@ -75,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Terminal Simulation
-    const terminalText = "Welcome to my portfolio. I am Matheus Felipe da Silva Marciano, a Cybersecurity IT Analyst. Explore my projects and skills.";
+    const terminalText = "Welcome to my portfolio. I am Matheus Felipe da Silva Marciano, a Cybersecurity IT Analyst with a focus on protecting and securing information systems. Explore my projects, skills, and contact information to learn more about my professional journey.";
     let index = 0;
 
     function typeText() {
@@ -87,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setTimeout(() => {
-        terminalOutput.textContent = '';
+        index = 0; // Reinicia o índice ao trocar o idioma
         typeText();
     }, 1000);
 
@@ -104,36 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Modal for Projects
-    document.querySelectorAll('.project h4').forEach(project => {
-        project.addEventListener('click', () => {
-            const title = project.innerText;
-            const description = project.nextElementSibling.innerText;
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-description').innerText = description;
-            modal.style.display = "block";
-        });
-    });
-
-    closeButton.addEventListener('click', () => {
-        modal.style.display = "none";
-    });
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
-
-    // Animate Skills
-    function animateSkills() {
-        const skills = document.querySelectorAll('.skill');
-        skills.forEach(skill => {
-            skill.style.width = skill.getAttribute('data-skill') + '%';
-            skill.classList.add('code-flow');
-        });
-    }
-
-    // Initialize Skills Animation
-    animateSkills();
-});
+    // Modal Functionality
+    const projectButtons = document.querySelectorAll('.project-btn');
+    projectButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modalTitle.textContent = button.getAttribute
