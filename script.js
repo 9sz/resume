@@ -124,4 +124,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectButtons = document.querySelectorAll('.project-btn');
     projectButtons.forEach(button => {
         button.addEventListener('click', () => {
-            modalTitle.textContent = button.getAttribute
+            modalTitle.textContent = button.getAttribute('data-title');
+            modalDescription.textContent = button.getAttribute('data-desc');
+            modal.style.display = 'block';
+        });
+    });
+
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
