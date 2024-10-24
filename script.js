@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     let currentLanguage = 'en';
+    let terminalText = "Welcome to my portfolio. I am Matheus Felipe da Silva Marciano, a Cybersecurity IT Analyst with a focus on protecting and securing information systems. Explore my projects, skills, and contact information to learn more about my professional journey.";
+    let index = 0;
 
     const translations = {
         // Traduções...
@@ -63,19 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.textContent = translations[key][language];
             });
         });
+    }
 
-        // Reinicia o terminal
+    function resetTerminal() {
         terminalOutput.textContent = '';
+        index = 0; // Reinicia o índice ao trocar o idioma
         typeText();
+    }
+
+    function typeText() {
+        if (index < terminalText.length) {
+            terminalOutput.textContent += terminalText.charAt(index);
+            index++;
+            setTimeout(typeText, 50);
+        }
     }
 
     languageSwitcher.addEventListener('click', () => {
         currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
         translatePage(currentLanguage);
+        resetTerminal(); // Reinicia o terminal após a troca de idioma
     });
 
     // A tradução inicial
     translatePage(currentLanguage);
+    resetTerminal(); // Inicia o terminal na primeira carga
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -89,23 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-    // Terminal Simulation
-    const terminalText = "Welcome to my portfolio. I am Matheus Felipe da Silva Marciano, a Cybersecurity IT Analyst with a focus on protecting and securing information systems. Explore my projects, skills, and contact information to learn more about my professional journey.";
-    let index = 0;
-
-    function typeText() {
-        if (index < terminalText.length) {
-            terminalOutput.textContent += terminalText.charAt(index);
-            index++;
-            setTimeout(typeText, 50);
-        }
-    }
-
-    setTimeout(() => {
-        index = 0; // Reinicia o índice ao trocar o idioma
-        typeText();
-    }, 1000);
 
     // Glitch Effect
     const glitchElements = document.querySelectorAll('.glitch');
