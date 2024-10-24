@@ -1,193 +1,89 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const languageSwitcher = document.getElementById('language-switcher');
+    const terminalOutput = document.querySelector('.terminal-output');
+    const modal = document.getElementById('myModal');
+    const closeModal = document.querySelector('.close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    let currentLanguage = 'en';
 
-header {
-    text-align: center;
-    padding: 50px 0;
-    background-color: #333;
-}
+    const translations = {
+        // Traduções...
+    };
 
-nav {
-    background-color: #444;
-    padding: 10px 0;
-    text-align: center;
-}
+    function translatePage(language) {
+        // Função de tradução...
+    }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+    languageSwitcher.addEventListener('click', () => {
+        currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
+        translatePage(currentLanguage);
+    });
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
+    // A tradução inicial...
+    translatePage(currentLanguage);
 
-nav ul li a {
-    color: #f2f2f2;
-    text-decoration: none;
-    font-weight: bold;
-}
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = e.target.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
 
-nav ul li a:hover {
-    color: #1abc9c;
-}
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
 
-section {
-    padding: 50px;
-    border-bottom: 1px solid #444;
-}
+    // Terminal Simulation
+    const terminalText = "Welcome to my portfolio. I am Matheus Felipe da Silva Marciano, a Cybersecurity IT Analyst with a focus on protecting and securing information systems. Explore my projects, skills, and contact information to learn more about my professional journey.";
+    let index = 0;
 
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #333;
-}
+    function typeText() {
+        if (index < terminalText.length) {
+            terminalOutput.textContent += terminalText.charAt(index);
+            index++;
+            setTimeout(typeText, 50);
+        }
+    }
 
-/* Terminal Simulation */
-#terminal {
-    background-color: #000;
-    color: #0f0;
-    font-family: monospace;
-    padding: 20px;
-    border-radius: 5px;
-}
+    setTimeout(() => {
+        terminalOutput.textContent = '';
+        typeText();
+    }, 1000);
 
-.terminal-header {
-    display: flex;
-    justify-content: flex-start;
-    padding-bottom: 10px;
-}
+    // Glitch Effect
+    const glitchElements = document.querySelectorAll('.glitch');
 
-.terminal-button {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    margin-right: 5px;
-}
+    glitchElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            el.classList.add('active');
+        });
 
-.terminal-button.red {
-    background-color: #f44336;
-}
+        el.addEventListener('mouseleave', () => {
+            el.classList.remove('active');
+        });
+    });
 
-.terminal-button.yellow {
-    background-color: #ffeb3b;
-}
+    // Modal Functionality
+    const projectButtons = document.querySelectorAll('.project-btn');
+    projectButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modalTitle.textContent = button.getAttribute('data-title');
+            modalDescription.textContent = button.getAttribute('data-desc');
+            modal.style.display = 'block';
+        });
+    });
 
-.terminal-button.green {
-    background-color: #4caf50;
-}
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 
-.terminal-body {
-    background-color: #000;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.terminal-output {
-    margin: 0;
-}
-
-/* Glitch Effect */
-.glitch {
-    position: relative;
-    color: #f2f2f2;
-    font-size: 24px;
-}
-
-.glitch:before, .glitch:after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-}
-
-.glitch:before {
-    animation: glitch 2s infinite linear alternate-reverse;
-    clip: rect(0, 900px, 0, 0);
-}
-
-.glitch:after {
-    animation: glitch 2s infinite linear alternate-reverse;
-    clip: rect(0, 900px, 0, 0);
-}
-
-@keyframes glitch {
-    /* ... */
-}
-
-/* Skill Bars */
-.skill-bar {
-    background-color: #444;
-    border-radius: 25px;
-    margin: 10px 0;
-    overflow: hidden;
-}
-
-.skill {
-    background-color: #1abc9c;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    color: #fff;
-    width: 0;
-    transition: width 2s;
-}
-
-.skill[data-skill="Network Security"] {
-    width: 90%;
-}
-
-.skill[data-skill="Penetration Testing"] {
-    width: 80%;
-}
-
-.skill[data-skill="Incident Response"] {
-    width: 85%;
-}
-
-.skill[data-skill="Encryption Techniques"] {
-    width: 75%;
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-content {
-    background-color: #1e1e1e;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #1abc9c;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 5px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
